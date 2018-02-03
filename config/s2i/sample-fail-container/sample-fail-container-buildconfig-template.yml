@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Template
+labels:
+  template: sample-fail-container-builder
+metadata:
+  annotations:
+    description: sample-fail container
+    iconClass: sample-fail-container
+    tags: instant-app
+  name: sample-fail-container-builder
+objects:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    annotations:
+    labels:
+    name: sample-fail-container
+  spec: {}
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    name: sample-fail-container
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: sample-fail-container:latest
+    resources: {}
+    source:
+      contextDir: ${REPO_CONTEXTDIR}
+      git:
+        ref: ${REPO_REF}
+        uri: ${REPO_URL}
+      type: Git
+    strategy:
+      dockerStrategy:
+        noCache: true
+        env:
+          - name: CONTAINER_NAME
+            value: sample-fail-container
+          - name: FAIL_IT
+            value: ${FAIL_IT}
+      type: Docker
+    triggers:
+    - type: ConfigChange
+parameters:
+- description: Git repository with Dockerfile and slave entrypoint.
+  displayName: Repository URL
+  name: REPO_URL
+  value: https://github.com/arilivigni/test-containers.git 
+- description: The sub-directory inside the repository.
+  displayName: Context Directory
+  name: REPO_CONTEXTDIR
+  value: config/Dockerfiles/sample-fail-container
+- description: The git ref or tag to use for customization.
+  displayName: Git Reference
+  name: REPO_REF
+  value: master
+- description: Fail the building of the container
+  displayName: Fail container build
+  name: FAIL_IT
+  value: 'false'
+
