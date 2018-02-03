@@ -1,8 +1,8 @@
 FROM fedora:26
-LABEL maintainer "Ari LiVigni"
-LABEL description="This container is meant to \
-build a container that will fail building sometimes. \
-It will leverage a script called opt-test.sh"
+LABEL maintainer="Ari LiVigni" \
+      description="This container is meant to \
+      build a container that will fail building sometimes. \
+      It will leverage a script called opt-test.sh"
 
 # Install all package requirements
 RUN for i in {1..5} ; do dnf -y install ansible \
