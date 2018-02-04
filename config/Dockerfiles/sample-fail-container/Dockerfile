@@ -24,5 +24,5 @@ RUN for i in {1..5} ; do dnf -y install ansible \
 COPY opt-test.sh /tmp/opt-test.sh
 
 # Run the build script
-ENTRYPOINT ["bash", "/tmp/package-test.sh"]
+ENTRYPOINT ["bash", "/tmp/opt-test.sh"]
 
