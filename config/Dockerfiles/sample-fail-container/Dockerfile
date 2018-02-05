@@ -23,6 +23,14 @@ RUN for i in {1..5} ; do dnf -y install ansible \
 # Copy the build script to the container
 COPY opt-test.sh /tmp/opt-test.sh
 
+# Fail image build if FAIL_IT = true
+RUN if [ "${FAIL_IT}" == "true" ]; then
+        echo "FAIL_IT: true";
+        exit 1;
+    else
+        echo "FAIL_IT: false";
+    fi
+
 # Run the build script
 ENTRYPOINT ["bash", "/tmp/opt-test.sh"]
 
