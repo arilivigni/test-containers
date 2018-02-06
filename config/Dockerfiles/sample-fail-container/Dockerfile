@@ -24,11 +24,11 @@ RUN for i in {1..5} ; do dnf -y install ansible \
 COPY opt-test.sh /tmp/opt-test.sh
 
 # Fail image build if FAIL_IT = true
-RUN if [ "${FAIL_IT}" == "true" ]; then \
-        echo "FAIL_IT: true"; \
+RUN if [ "${FAIL_IT}" == "True" ]; then \
+        echo "FAIL_IT: True"; \
         exit 1; \
     else \
-        echo "FAIL_IT: false"; \
+        echo "FAIL_IT: False"; \
     fi
 
 # Run the build script
