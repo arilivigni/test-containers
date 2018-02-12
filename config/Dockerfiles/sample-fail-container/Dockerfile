@@ -5,20 +5,20 @@ LABEL maintainer="Ari LiVigni" \
       It will leverage a script called opt-test.sh"
 
 # Install all package requirements
-RUN for i in {1..5} ; do dnf -y install ansible \
-        curl \
-        dnf-plugins-core \
-        file \
-        findutils \
-        git \
-        libselinux-python \
-        python2-dnf \
-        rsync \
-        standard-test-roles \
-        sudo \
-        wget \
-        && dnf clean all \
-        && break || sleep 10 ; done
+#RUN for i in {1..5} ; do dnf -y install ansible \
+#        curl \
+#        dnf-plugins-core \
+#        file \
+#        findutils \
+#        git \
+#        libselinux-python \
+#        python2-dnf \
+#        rsync \
+#        standard-test-roles \
+#        sudo \
+#        wget \
+#        && dnf clean all \
+#        && break || sleep 10 ; done
 
 # Copy the build script to the container
 COPY opt-test.sh /tmp/opt-test.sh
